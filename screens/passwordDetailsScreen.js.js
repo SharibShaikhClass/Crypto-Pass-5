@@ -20,7 +20,8 @@ export default class PasswordDetails extends React.Component {
       docId: this.props.navigation.getParam('details')["doc.id"],
       decryptedpassword: "",
       passwordHolder1: '',
-      passwordHolder2: ''
+      passwordHolder2: '',
+      newpassword:""
     }
   }
 
@@ -54,22 +55,13 @@ export default class PasswordDetails extends React.Component {
 
   updatePasswordDetails = () => {
     var encode = Base64.encode(this.state.passwordHolder1);
-    this.setState({ password: encode });
-    db.collection('savedpasswords').where("request_id" , '==',this.state.requestId)
-    .get()
-    .then(snapshot =>{
-      snapshot.forEach(doc=>{
-        doc.update({
-          "encrypted_password": this.state.password
-        })
-      })
-    })
+    this.setState({ newpassword: encode });
+    db.collection('savedpasswords')
+    .where('request_id','==',this.state.requestId)
+    //working till above line
+      .update({"encrypted_password " : this.state.newpassword })
 
-
-
-
-
-    Alert.alert("Your Password Has Been Saved")
+    Alert.alert("Password Changed")
 
   }
 
@@ -114,6 +106,9 @@ export default class PasswordDetails extends React.Component {
               selectable={true}
               style={{ marginTop: 20, fontSize: 17, fontWeight: 'bold' }}> Password : {this.state.decryptedpassword}</Text>
 
+<Text>{this.state.requestId}</Text>
+
+<Text>{this.state.newpassword}</Text>
 
             </View>
 

@@ -64,7 +64,8 @@ export default class SignUpScreen extends React.Component {
                 <Header containerStyle={{
                     justifyContent: 'center',
                     backgroundColor: '#175ddc',
-                    borderColor: '#09a6e3'
+                    borderColor: '#09a6e3',
+                    marginTop:-40
 
                 }}
 
@@ -82,7 +83,7 @@ export default class SignUpScreen extends React.Component {
                         text: "SignUp",
                         style: {
                             color: 'white',
-                            fontSize: RFValue(20),
+                            fontSize: RFValue(18),
                             fontWeight: "bold",
                             justifyContent: 'center',
                             alignItems: 'center'
@@ -95,7 +96,7 @@ export default class SignUpScreen extends React.Component {
                             style={{
                                 justifyContent: "center",
                                 alignSelf: "center",
-                                fontSize: RFValue(25),
+                                fontSize: RFValue(18),
                                 color: "#175ddc",
                                 margin: RFValue(18),
                                 fontWeight: 'bold'
@@ -235,10 +236,10 @@ const styles = StyleSheet.create({
 
     textinput: {
         width: RFValue(250),
-        height: RFValue(35),
+        height: RFValue(30),
         borderWidth: 1.5,
         borderColor: "#175ddc",
-        fontSize: RFValue(17),
+        fontSize: RFValue(18),
         margin: RFValue(11),
         paddingLeft: RFValue(9),
         marginBottom: RFValue(9),

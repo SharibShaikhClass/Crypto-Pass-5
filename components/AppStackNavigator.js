@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import PasswordScreen from '../screens/passwordScreen';
 import PasswordDetails from '../screens/passwordDetailsScreen.js';
 
-export const AppStackNavigator = createStackNavigator({
+export const AppStackNavigator= createStackNavigator({
   Password: {
     screen:PasswordScreen,
     navigationOptions: {

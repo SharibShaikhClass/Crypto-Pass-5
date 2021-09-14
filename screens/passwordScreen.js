@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, FlatList, ScrollView, TextInput, TouchableOpacity, Modal, StatusBar, Image } from 'react-native';
+import { View, Alert, StyleSheet, Text, FlatList, ScrollView, TextInput, TouchableOpacity, Modal, StatusBar, Image } from 'react-native';
 import { ListItem, Header, Icon } from 'react-native-elements'
 import firebase from 'firebase';
 import db from '../config'
@@ -18,7 +18,8 @@ export default class PasswordScreen extends Component {
       passwordemail: "",
       password: "",
       decryptedpassword: "",
-      docId: ''
+      docId: '',
+    
     }
     this.requestRef = null
   }
@@ -76,6 +77,9 @@ export default class PasswordScreen extends Component {
       })
   }
 
+  deletepassword=(item)=>{
+    dispatch(deletepass(item));
+  }
 
 
   componentDidMount() {
@@ -89,7 +93,7 @@ export default class PasswordScreen extends Component {
 
 
 
-  keyExtractor = (item, index) => index.toString()
+  keyExtractor = (item, index) => item.key
 
   renderItem = ({ item, i }) => {
     return (
@@ -97,15 +101,23 @@ export default class PasswordScreen extends Component {
         key={i}
         title={item.name}
         titleStyle={{ color: "black", fontWeight: "bold" }}
+        rightIcon={
+          <TouchableOpacity onPress={()=>{Alert.alert("New Bug")
+          }}>
+                     <Icon name="delete" type="AntDesign" />
+                     </TouchableOpacity>
+                 }
         rightElement={
           <TouchableOpacity style={styles.button}
             onPress={() => {
               this.props.navigation.navigate("PasswordsDetails", { "details": item })
             }}
           >
+           
             <Text style={{ color: 'white', fontSize: 15 }}>View</Text>
           </TouchableOpacity>
         }
+     
         bottomDivider
       />
     )
@@ -129,6 +141,10 @@ export default class PasswordScreen extends Component {
           title="Your Passwords"
           navigation={this.props.navigation}
         />
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+         
+        </View>
+
       
         <View style={styles.subContainer}>
 
@@ -150,6 +166,7 @@ const styles = StyleSheet.create({
   subContainer: {
     flex: 1,
     fontSize: 20,
+    backgroundColor: "white",
     //justifyContent: 'center',
     //alignItems: 'center',
   },

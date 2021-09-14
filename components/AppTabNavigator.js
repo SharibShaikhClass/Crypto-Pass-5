@@ -1,38 +1,80 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import React from "react";
+import { Image } from "react-native-elements"
+import { createMaterialTopTabNavigator } from "react-navigation-tabs";
+import { RFValue } from "react-native-responsive-fontsize";
 import AddPasswordsScreen from '../screens/addPasswordScreen'
-import MyHeader from '../components/MyHeader';
+import { AppStackNavigator } from "./AppStackNavigator";
 
-import AppStackNavigator from './AppStackNavigator';
+export const AppTabNavigator = createMaterialTopTabNavigator
+    (
+        {
+            Passwords: {
 
-const Tab = createMaterialTopTabNavigator();
+                screen: AppStackNavigator,
+                navigationOptions: {
+                    tabBarLabel: "Passwords",
+                    tabBarPosition:'bottom',
 
-const AppTabNavigator = (props) => {
-  return (
-    <View style={{flex:1}}>
-        <MyHeader
-          title="Crypto"
-          justifyContent="center"
-          navigation={props.navigation}
-        />
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Passwords" component={AppStackNavigator} />
-          <Tab.Screen name="Add Password" component={AddPasswordsScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </View>
-  );
-};
+                    tabBarIcon: () => (
+                        <Image
+                            source={require("../assets/pass1.png")}
+                            style={{
+                                width: RFValue(25),
+                                height: RFValue(25),
+                                //margin:10,
+                              
+                            }}
+                        />
 
-export default AppTabNavigator;
+                    ),
+
+                },
+            },
+
+            Add: {
+                screen: AddPasswordsScreen,
+                navigationOptions: {
+                    tabBarLabel: "Add Password",
+                    tabBarPosition:'bottom',
+                    tabBarIcon: () => (
+                        <Image
+                            source={require("../assets/pass2.png")}
+                            style={{
+
+                                width: 30,
+                                height: 30,
+
+                                justifyContent: 'center',
+
+
+                            }}
+
+                        />
+                    ),
+                },
+            },
+
+
+        },
+   
+      
+        {
+            tabBarOptions: {
+                activeTintColor: '#175ddc',
+                inactiveTintColor:'grey',
+                showIcon: true,
+                
+              
+
+                style: {
+                    backgroundColor: "white",
+                    
+                    
+                },
+            },
+
+            
+
+
+        }
+    );

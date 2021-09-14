@@ -27,7 +27,7 @@ export default class LoginScreen extends React.Component {
             .auth()
             .signInWithEmailAndPassword(emailId, password)
             .then(() => {
-                this.props.navigation.navigate("Home");
+                this.props.navigation.navigate("Passwords");
                 console.log("Logged In")
             })
             .catch((error) => {
@@ -116,7 +116,7 @@ export default class LoginScreen extends React.Component {
                         <TouchableOpacity
                             style={styles.SignUpButton}
                             onPress={() => {
-                                this.setState({ isModalVisible: true });
+                                this.props.navigation.navigate("SignUpScreen")
                             }}
                         >
                             <Text style={styles.submittext}>Create Account</Text>

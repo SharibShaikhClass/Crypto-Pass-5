@@ -21,7 +21,7 @@ export default class MyHeader extends Component {
             //alignItems: 'center'
           },
         }}
-        rightComponent={
+    rightComponent={
           <Icon
             name="bars"
             type="font-awesome"
